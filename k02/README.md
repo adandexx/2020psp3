@@ -69,6 +69,17 @@ typedef struct {
     - return値: IDが合致した配列データのindex。IDが一致するデータがない場合は-1。
 
 ## ソースコードの説明
+InsertNewNodeの説明
+    78行目でNewNodeをポインタで宣言し、メモリ確保。
+    NewNodeのcityに引数の市町村名を代入。
+    NewNodeのpNextに現在の先頭を入れ、新しくなった先頭を代入する。
+
+SearchCityByIDの説明
+    106行目では要素を全て確認した後に、CurrentNodeがNULLとなった場合にはfor文を抜けて-1を返す。
+    109行目では、引数のIDと一致すればcityの要素を代入し、何番目の要素かを返す。
+
+SearchCityByNameの説明
+    文字列の比較を行うためにstrcmpを導入、一致する場合は0がかえるのでif文を使い、一致する場合はindexとiを返し、見つからない場合は-1を返す。
 
 
 
