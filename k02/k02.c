@@ -73,34 +73,48 @@ void PrintList(Node* pTop)
 
 }
 
-Node* InsertNewNode(City newCity, Node* pNext)
+Node* InsertNewNode(City newCity, Node* CurrentTop)
 {
-    //  ここを実装する
-
+    Node* NewNode = malloc(sizeof(Node));
+    NewNode->city = newCity;
+    NewNode->pNext = CurrentTop;
+    return NewNode;
 }
 
-#ifdef CHALLENGE1
-int DeleteNodeAt(Node** ppNode, int cn)
-{
-    //  チャレンジ問題1
-    //  ここを実装する
 
-}
-#endif
 
-#ifdef CHALLENGE2
+
 int SearchCityByName(Node* pList, char* cityName, City* pCity)
 {
-    //  チャレンジ問題2
-    //  ここを実装する
-
+    Node* CurrentNode = pList;
+    for(int i = 0;;i++){
+        if(CurrentNode == NULL){
+            break;
+        }
+        if(!strcmp(CurrentNode->city.name,cityName)){
+            *pCity = CurrentNode->city;
+            return i;
+        }
+        CurrentNode = CurrentNode->pNext;
+    }
+    return -1;
 }
-#endif
+
 
 int SearchCityByID(Node* pList, int ID, City* pCity)
 {
-    // ここを実装する
-
+    Node* CurrentNode = pList;
+    for(int i = 0;;i++){
+        if(CurrentNode == NULL){
+            break;
+        }
+        if(CurrentNode->city.id == ID){
+            *pCity = CurrentNode->city;
+            return i;
+        }
+        CurrentNode = CurrentNode->pNext;
+    }
+    return -1;
 }
 
 int main(void)
@@ -147,7 +161,7 @@ int main(void)
         printf("sorry, the city was not found\n");
     }
 
-#ifdef CHALLENGE1
+
     //  市町村名で特定の市町村を探す
     char name[32];
     printf("City Name?");
@@ -159,14 +173,8 @@ int main(void)
     } else {
         printf("sorry, the city was not found\n");
     }
-#endif
 
-#ifdef CHALLENGE2
-    // 特定の場所のノードを削除する
-    // cnは直前の検索結果
-    DeleteNodeAt(&pTop, cn);
-    PrintList(pTop);
-#endif
+
 
     ReleaseList(pTop);
 
