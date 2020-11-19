@@ -82,29 +82,7 @@ Node* InsertNewNode(City newCity, Node* CurrentTop)
 }
 
 
-#ifdef DEBUG
-int DeleteNodeAt(Node** ppNode, int cn)
-{
-    int i;
-    Node* CurrentNode = *ppNode; //pNodeを格納
-    Node* temp; //一時保管場所作成
-    for(i = 0;i < cn ; i++){
-        CurrentNode = CurrentNode->pNext; //削除する要素を見に行く
-        temp = CurrentNode; //削除される要素のpNextを保管する
-    }
 
-    printf("削除:%s\n",CurrentNode->city.name);
-
-    CurrentNode = *ppNode; 
-    for(i = 0;i < cn - 1;i++){ //削除するひとつ前の要素を見に行く
-        CurrentNode = CurrentNode->pNext;
-        CurrentNode->pNext = temp;
-    }
-
-
-
-}
-#endif
 
 int SearchCityByName(Node* pList, char* cityName, City* pCity)
 {
@@ -196,15 +174,9 @@ int main(void)
         printf("sorry, the city was not found\n");
     }
 
-#ifdef DEBUG
-    // 特定の場所のノードを削除する
-    // cnは直前の検索結果
-    DeleteNodeAt(&pTop, cn);
 
-    PrintList(pTop);
 
     ReleaseList(pTop);
-#endif
 
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
