@@ -78,7 +78,7 @@ int LoadData(City arrayCity[])
 
 void BubbleSort(City arrayCity[], int size)
 {   
-    printf("arrayCity[0].total");
+    printf("%d",arrayCity[0].total);
     int tmp,pos,cnt = 0;
     while(cnt != 0){
         for(pos = 0; pos < size - 1; pos++){
