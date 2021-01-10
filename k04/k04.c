@@ -75,30 +75,70 @@ int LoadData(City arrayCity[])
     return cn;
 }
 
+//swap関数自作
+void Swap(City *c1, City *c2) {
+    City tmp = *c1;
+    *c1 = *c2;
+    *c2 = tmp;
+}
 
 void BubbleSort(City arrayCity[], int size)
 {   
-    printf("%d",arrayCity[0].total);
-    int tmp,pos,cnt = 0;
-    while(cnt != 0){
+int pos,cnt = 0;
+
+    while(1){
+        cnt = 0;
         for(pos = 0; pos < size - 1; pos++){
             if(arrayCity[pos].total > arrayCity[pos + 1].total){
-                //左が大きいときは入れ替え
-                tmp = arrayCity[pos].total;
-                arrayCity[pos].total = arrayCity[pos + 1].total;
-                arrayCity[pos + 1].total = tmp;
+                Swap(&arrayCity[pos], &arrayCity[pos + 1]);
                 cnt++;
             }
         }
+        if(cnt == 0){
+            break;
+        }
     }
+    return;
 }
 
 
 
 void QuickSort(City arrayCity[], int left, int right)
 {
-    //  ここを実装する
+    int i, j, pivot;
+    //2以上
+    if(left < right){
+        i = left;
+        j = right;
+        //pivot設定
+        pivot = arrayCity[left].seafood;
+        while(1){
+            while(i <= right){
+                if(pivot < arrayCity[i].seafood){
+                    break;
+                }
+                i++;
+            }
+            while(j > left){
+                if(pivot >= arrayCity[j].seafood){
+                    break;
+                }
+                j--;
+            }
+            //入れ替え
+            if(j <= i){
+               break;
+            }else{
+                Swap(&arrayCity[i], &arrayCity[j]);
+            }
+        }
+        Swap(&arrayCity[left], &arrayCity[j]);
 
+        QuickSort(arrayCity, left, j - 1);
+        QuickSort(arrayCity, j + 1, right);
+    }
+
+    return;
 }
 
 
