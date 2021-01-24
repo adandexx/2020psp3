@@ -99,14 +99,37 @@ int StackIsEmpty(void)
 }
 
 
-
 #define UNVISITED   0
 #define VISITED 1
 
 void DepthFirstSearch(int size, int matrix[size][size], int start)
 {
-    //  ここを実装する
+    int visited[size];
+    int index, i;
+    
+    for(index = 0; index < size; index++){
+        visited[index] = 0;
+    }
 
+    StackInit();
+    StackPush(start);
+
+    while(StackIsEmpty() == FALSE){
+        index = StackPop();
+        i = 0;
+
+        if(visited[index] == 0){
+            visited[index] = 1;
+            PrintStationName(index);
+            while(i < size){
+                if(matrix[index][i] != 0){
+                    StackPush(i);
+                }
+                i++;
+            }
+        }
+    }
+    return;
 }
 
 
@@ -171,8 +194,33 @@ int QueueIsEmpty()
 
 void BreadthFirstSearch(int size, int matrix[size][size], int start)
 {
-    //  ここを実装する
+    int visited[size];
+    int index, i;
 
+    for(index = 0; index < size; index++){
+        visited[index] = 0;
+    }
+
+    InitQueue();
+    EnQueue(start);
+
+    while(QueueIsEmpty() == FALSE){
+        index = DeQueue();
+        i = 0;
+        if(visited[index] == 0){
+            visited[index] = 1;
+            PrintStationName(index);
+            
+            while(i < size){
+                if(matrix[index][i] != 0){
+                    EnQueue(i);
+                }
+                i++;
+            }
+        }
+
+    }
+    return;
 }
 
 

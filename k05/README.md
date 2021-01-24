@@ -84,7 +84,7 @@ int AdjacencyMatrix[MAX_STATIONS][MAX_STATIONS] = {
 - StackPush: スタックに値をプッシュする
 - StackPop: スタックから値をポップする
 - StackTop: スタックの先頭の値を取得する(スタックポインタは移動しない)
-- StackIsEmpty: スタックが空か判断する。空の場合はTRUE、空でなければFALSEを返す。
+- StackIsEmpty: スタックが空か判断する。空の場l合はTRUE、空でなければFALSEを返す。
 - InitQueue: キューを初期化する
 - EnQueue: キューに値を入れる
 - DeQueue: キューから値を取り出す
@@ -98,13 +98,48 @@ int AdjacencyMatrix[MAX_STATIONS][MAX_STATIONS] = {
 
 ## ソースコードの説明
 
+l106~　深さ優先探索
+
+l108 visited初期化
+l115 Stackを初期化
+l116 出発点をPush
+l118 スタックの中身がなくなるまでwhileで繰り返す
+l122 行ったことがない場合はvisitedを1にする
+l124 駅名を表示する
+l126 その場所からいける場所をスタックに入れる
+
+l196~ 幅優先探索
+
+l198,201 visitedを初期化
+
+l205 Queueを初期化
+l206 出発地点をEnQueue
+l208 Queueが空になるまでwhile文で繰り返す。
+l209 Queueから一つ取り出す
+l211 行ったことがない場合は行ったことにする
+l213 駅名を表示
+l215 そこからいける場所をEnqueueする
 
 
 ## 出力結果
 
-```
-
-```
+赤迫
+長崎大学前
+長崎駅前
+市民会館
+蛍茶屋
+崇福寺
+新地中華街
+石橋
+赤迫
+長崎大学前
+長崎駅前
+新地中華街
+市民会館
+石橋
+崇福寺
+蛍茶屋
+Time Required: 8
 
 ## 修正履歴
 
