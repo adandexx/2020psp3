@@ -99,7 +99,6 @@ int StackIsEmpty(void)
 }
 
 
-
 #define UNVISITED   0
 #define VISITED 1
 
